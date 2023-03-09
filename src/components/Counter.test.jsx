@@ -14,5 +14,14 @@ describe("Counter", () => {
     await screen.findByText("You have clicked 1 times.");
   });
 
-  // TODO: Implement test for click decrease here
+  it("should say 1 when increase button is clicked", async () => {
+    render(<Counter />);
+
+    const paragraphTag = screen.getByRole("dialog");
+    const buttonToClick = screen.getByText(/decrease/i);
+
+    expect(paragraphTag).toHaveTextContent("You have clicked 0 times.");
+    fireEvent.click(buttonToClick);
+    await screen.findByText("You have clicked -1 times.");
+  });
 });
